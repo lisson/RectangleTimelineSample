@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:stackpanel_timelinetest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <local:EventLengthConverter x:Key="EventLengthConverter" />
+    </Window.Resources>
     <Grid>
-        
+        <ItemsControl ItemsSource="{Binding TimeEventQueue}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid x:Name="EventContainer" Height="20" Background="Gainsboro"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Rectangle Width="{Binding durationInMs}" Margin="{Binding offsetInMs, Converter={StaticResource EventLengthConverter}}" Fill="LightBlue" >
+                    </Rectangle>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Window>

@@ -23,6 +23,7 @@ namespace stackpanel_timelinetest
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new viewmodel1();
         }
     }
 }
